@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+    
     public function selectedBook(Type $var = null)
     {
         return $this->hasMany(SelectedBook::class); 
