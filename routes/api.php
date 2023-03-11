@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\OrderedBookController;
 use App\Http\Controllers\genreController;
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +25,14 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/books', [BookController::class, 'index']);
+Route::post('/orderedBooks', [OrderedBookController::class,'store']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
  
     Route::get('/genres', [GenreController::class, 'index']);
-    Route::resource('/books', BookController::class)->only(['store','update','destroy']);
-    
+    Route::resource('/books', BookController::class)->only(['update','destroy']);
+   
 });
 
 

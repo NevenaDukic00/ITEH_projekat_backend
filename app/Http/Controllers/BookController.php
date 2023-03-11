@@ -16,6 +16,8 @@ class BookController extends Controller
         return new BookCollection($books);
     }
 
+    
+   
     public function destroy($bookid)
     {
         

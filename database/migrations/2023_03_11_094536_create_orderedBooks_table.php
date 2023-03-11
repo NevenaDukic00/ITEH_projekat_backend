@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('selected_books', function (Blueprint $table) {
+        Schema::create('ordered_books', function (Blueprint $table) {
             $table->id();
+            $table->integer('amount');
             $table->foreignId('user_id');
             $table->foreignId('book_id');
             $table->timestamps();
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('selected_books');
+        Schema::dropIfExists('ordered_books');
     }
 };
