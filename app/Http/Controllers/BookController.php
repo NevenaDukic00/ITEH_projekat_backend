@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
-use App\Http\Resources\BookCollection;
+use App\Http\Resources\BookResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 class BookController extends Controller
@@ -13,7 +13,7 @@ class BookController extends Controller
         $books = Book::all();
        
 
-        return new BookCollection($books);
+        return BookResource::collection($books);
     }
 
     

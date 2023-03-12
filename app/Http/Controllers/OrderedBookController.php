@@ -5,8 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\OrderedBook;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\OrderedBookResource;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 class OrderedBookController extends Controller
 {
+    public function index()
+    {
+    
+
+        $orderedBooks = OrderedBook::get()->where('user_id', Auth::user()->id);
+
+
+        if (sizeof($orderedBooks) == 0) {
+            return response()->json(['response' => "You don't have any book ordered!"]);
+        }
+
+
+       
+
+        return OrderedBookResource::collection($orderedBooks);
+    
+
+      
+      
+   
+
+    }
     public function store(Request $request)
     {
       
