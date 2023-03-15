@@ -17,6 +17,36 @@ class BookController extends Controller
     }
 
     
+    public function update(Request $request,Book $book)
+    {
+        
+
+       
+        
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'price' => 'required|string'
+                
+                
+            ]
+        );
+       
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        
+        $book->price = $request->price;
+      
+        $book->save();
+        
+        
+        return response()->json(['response' => 'You have successfully changed book!']);
+    
+    }
+    
    
     public function destroy($bookid)
     {
