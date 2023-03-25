@@ -25,14 +25,12 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/books', [BookController::class, 'index']);
-Route::post('/orderedBooks', [OrderedBookController::class,'store']);
+Route::post('/orderedBooks', [OrderedBookController::class, 'store']);
+Route::post('/addBook', [BookController::class, 'add']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/orderedBooks', [OrderedBookController::class,'index']);
+    Route::get('/orderedBooks', [OrderedBookController::class, 'index']);
     Route::get('/genres', [GenreController::class, 'index']);
-    Route::resource('/books', BookController::class)->only(['update','destroy']);
-   
+    Route::resource('/books', BookController::class)->only(['update', 'destroy']);
 });
-
-

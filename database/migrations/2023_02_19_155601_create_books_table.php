@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('price');
             $table->foreignId('genre_id');
+            $table->double('amount');
             $table->timestamps();
         });
     }
