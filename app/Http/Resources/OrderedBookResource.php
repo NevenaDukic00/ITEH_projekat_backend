@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 class OrderedBookResource extends JsonResource
 {
     /**
@@ -16,7 +17,7 @@ class OrderedBookResource extends JsonResource
         return [
             'id'=>$this->resource->id,
            'amount'=>$this->resource->amount,
-           'date'=>$this->resource->created_at,
+           'date'=>Str::substr($this->resource->created_at, 0,10),
            'user'=>new UserResource($this->resource->user),
            'book'=>new BookResource($this->resource->book),
           
