@@ -21,16 +21,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);//imamo
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('/books', [BookController::class, 'index']);
-Route::post('/orderedBooks', [OrderedBookController::class, 'store']);
-Route::post('/addBook', [BookController::class, 'add']);
+Route::post('/login', [AuthController::class, 'login']);//imamo
+Route::get('/books', [BookController::class, 'index']);//imamo
+
+Route::post('/addBook', [BookController::class, 'add']);//imamo
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);//imamo
     Route::get('/orderedBooks', [OrderedBookController::class, 'index']);
-    Route::get('/genres', [GenreController::class, 'index']);
-    Route::resource('/books', BookController::class)->only(['update', 'destroy']);
+    Route::get('/genres', [GenreController::class, 'index']);//imamo
+    Route::post('/orderedBooks', [OrderedBookController::class, 'store']);
+    Route::resource('/books', BookController::class)->only(['update', 'destroy']);//imamo
 });

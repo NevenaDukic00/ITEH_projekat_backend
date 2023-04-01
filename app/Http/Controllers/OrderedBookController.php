@@ -40,7 +40,6 @@ class OrderedBookController extends Controller
             $request->all(),
             [
                 'amount' => 'required|max:40',
-                'user_id' => 'required',
                 'book_id'=>'required'
             ]
         );
@@ -50,10 +49,11 @@ class OrderedBookController extends Controller
             return response()->json($validator->errors());
         }
 
+    
         
         $orderedBook = OrderedBook::create([
             'amount' => $request->amount,
-            'user_id'=> $request->user_id,
+            'user_id' => Auth::id(),
             'book_id' => $request->book_id
             
         ]);
